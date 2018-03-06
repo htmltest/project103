@@ -102,6 +102,28 @@ form {margin:24px 0; padding:0}
 
 .form-select select {position:relative; border:2px solid #eaecf4; font:300 17px/27px Roboto, sans-serif; color:#000; vertical-align:top; margin:0; padding:3px 13px 4px 13px; width:100%; height:38px; box-sizing:border-box; outline:none; border-radius:3px; background:#fff; -webkit-appearance:none}
 
+.form-select-checkboxes {position:relative}
+.form-select-checkboxes * {box-sizing:border-box}
+.form-select-checkboxes-value {position:relative; overflow:hidden; padding:0 0 0 13px; height:38px; border:2px solid #eaecf4; border-radius:3px; background:#fff; color:#000; white-space:nowrap; line-height:34px; cursor:pointer}
+.form-select-checkboxes:hover .form-select-checkboxes-value {border-color:#dda9a9}
+.form-select-checkboxes-value:after {content:""; display:block; width:11px; height:6px; position:absolute; right:6px; top:50%; margin-top:-3px; background:url(../images/arrow.png)}
+.form-select-checkboxes-value-text {display:block; overflow:hidden; margin-right:25px; text-overflow:ellipsis; white-space:nowrap}
+.form-select-checkboxes-list {position:absolute; left:-9999px; top:-9999px; margin:-2px 0 0 0; border-radius:0 0 3px 3px; min-width:100%; z-index:1010; border:2px solid #dda9a9; background:#fff; padding:5px 0}
+.form-select-checkboxes.open .form-select-checkboxes-list {left:0; top:100%}
+.form-select-checkboxes-list-scroll {position:relative; overflow-y:auto; max-height:340px}
+.form-select-checkboxes-list-scroll ul {color:#000; position:relative; margin:0; padding:5px 28px 5px 0; list-style:none}
+.form-select-checkboxes-list-scroll ul li {margin:0; padding:0; line-height:30px; white-space:nowrap}
+.form-select-checkboxes-list-scroll ul li:before {display:none}
+.form-select-checkboxes-list-scroll ul li label {display:block; cursor:pointer; position:relative}
+.form-select-checkboxes-list-scroll ul li input {display:none}
+.form-select-checkbox-text {display:block; position:relative; padding:0 0 0 40px}
+.form-select-checkbox-text:before {content:""; display:block; width:16px; height:16px; background:#eaecf4; border-radius:3px; position:absolute; left:15px; top:8px}
+.form-select-checkboxes-list-scroll ul li label:hover .form-select-checkbox-text {color:#650003}
+.form-select-checkboxes-list-scroll ul li label:hover .form-select-checkbox-text:before {background:#ebcece}
+.form-select-checkboxes-list-scroll ul li input:checked+.form-select-checkbox-text {color:#000}
+.form-select-checkboxes-list-scroll ul li input:checked+.form-select-checkbox-text:before {background:#eaecf4}
+.form-select-checkboxes-list-scroll ul li input:checked+.form-select-checkbox-text:after {content:""; display:block; width:16px; height:11px; position:absolute; left:17px; top:9px; background:url(../images/form-checkbox.png)}
+
 .form-checkbox {margin:4px 0}
 .form-checkbox:after {content:"."; display:block; clear:both; visibility:hidden; height:0}
 .form-checkbox label {float:left; margin:0; cursor:pointer; position:relative; padding:0 0 0 33px; display:block; font-size:14px}

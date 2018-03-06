@@ -14,6 +14,54 @@ $(document).ready(function() {
         initForm($(this));
     });
 
+    $('.form-select-checkboxes-list-scroll').jScrollPane({showArrows: true});
+
+    $('body').on('click', '.form-select-checkboxes-value', function() {
+        var curSelect = $(this).parent();
+        if (curSelect.hasClass('open')) {
+            curSelect.removeClass('open');
+        } else {
+            $('.form-select-checkboxes.open').removeClass('open');
+            curSelect.addClass('open');
+        }
+    });
+
+    $(document).click(function(e) {
+        if ($(e.target).parents().filter('.form-select-checkboxes').length == 0) {
+            $('.form-select-checkboxes.open').removeClass('open');
+        }
+    });
+
+    $('.form-select-checkboxes').each(function() {
+        var curSelect = $(this);
+        var newValue = '';
+        curSelect.find('.form-select-checkboxes-list input:checked').each(function() {
+            if (newValue != '') {
+                newValue += ', ';
+            }
+            newValue += $(this).parent().find('.form-select-checkbox-text').html();
+        });
+        if (newValue == '') {
+            newValue = curSelect.find('.form-select-checkboxes-value').data('placeholder');
+        }
+        curSelect.find('.form-select-checkboxes-value-text').html(newValue);
+    });
+
+    $('body').on('change', '.form-select-checkboxes-list input', function() {
+        var newValue = '';
+        var curSelect = $(this).parents().filter('.form-select-checkboxes');
+        curSelect.find('.form-select-checkboxes-list input:checked').each(function() {
+            if (newValue != '') {
+                newValue += ', ';
+            }
+            newValue += $(this).parent().find('.form-select-checkbox-text').html();
+        });
+        if (newValue == '') {
+            newValue = curSelect.find('.form-select-checkboxes-value').data('placeholder');
+        }
+        curSelect.find('.form-select-checkboxes-value-text').html(newValue);
+    });
+
     $('body').on('click', '.window-link', function(e) {
         windowOpen($(this).attr('href'));
         e.preventDefault();
