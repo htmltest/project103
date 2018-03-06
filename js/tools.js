@@ -14,15 +14,22 @@ $(document).ready(function() {
         initForm($(this));
     });
 
-    $('.form-select-checkboxes-list-scroll').jScrollPane({showArrows: true});
-
     $('body').on('click', '.form-select-checkboxes-value', function() {
         var curSelect = $(this).parent();
         if (curSelect.hasClass('open')) {
             curSelect.removeClass('open');
+            var api = curSelect.find('.form-select-checkboxes-list-scroll').data('jsp');
+            if (api) {
+                api.destroy();
+            }
         } else {
             $('.form-select-checkboxes.open').removeClass('open');
             curSelect.addClass('open');
+            var api = curSelect.find('.form-select-checkboxes-list-scroll').data('jsp');
+            if (api) {
+                api.destroy();
+            }
+            curSelect.find('.form-select-checkboxes-list-scroll').jScrollPane({showArrows: true});
         }
     });
 
