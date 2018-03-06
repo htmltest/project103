@@ -19,6 +19,11 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
+    $('body').on('click', '.window-link-self', function(e) {
+        windowOpenSelf($(this).attr('href'));
+        e.preventDefault();
+    });
+
     $('body').on('click', '.window-link-close', function(e) {
         windowClose();
         e.preventDefault();
@@ -556,6 +561,65 @@ function windowOpen(linkWindow, dataWindow) {
             });
         }
     });
+}
+
+function windowOpenSelf(linkWindow) {
+    $('html').addClass('window-open');
+
+    if ($('.window').length > 0) {
+        $('.window').remove();
+    }
+
+    $('.wrapper').append('<div class="window"><div class="window-loading"></div></div>')
+
+    var html = $(linkWindow).html();
+    if ($('.window').length > 0) {
+        $('.window').append('<div class="window-container window-container-load"><div class="window-content">' + html + '<a href="#" class="window-close"></a></div></div>')
+
+        if ($('.window-container img').length > 0) {
+            $('.window-container img').each(function() {
+                $(this).attr('src', $(this).attr('src'));
+            });
+            $('.window-container').data('curImg', 0);
+            $('.window-container img').on('load', function() {
+                var curImg = $('.window-container').data('curImg');
+                curImg++;
+                $('.window-container').data('curImg', curImg);
+                if ($('.window-container img').length == curImg) {
+                    $('.window-container').removeClass('window-container-load');
+                    windowPosition();
+                }
+            });
+        } else {
+            $('.window-container').removeClass('window-container-load');
+            windowPosition();
+        }
+
+        $(window).resize(function() {
+            windowPosition();
+        });
+
+        $('.window-close').click(function(e) {
+            windowClose();
+            e.preventDefault();
+        });
+
+        $('body').on('keyup', function(e) {
+            if (e.keyCode == 27) {
+                windowClose();
+            }
+        });
+
+        $('.window form').each(function() {
+            initForm($(this));
+        });
+
+        $(document).click(function(e) {
+            if ($(e.target).hasClass('window')) {
+                windowClose();
+            }
+        });
+    }
 }
 
 function windowPosition() {
