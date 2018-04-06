@@ -665,6 +665,14 @@ function windowOpenSelf(linkWindow) {
             }
         });
 
+        $('.window input[id]').each(function() {
+            $(this).attr('id', $(this).attr('id') + '_window');
+        });
+
+        $('.window input[equalTo]').each(function() {
+            $(this).attr('equalTo', $(this).attr('equalTo') + '_window');
+        });
+
         $('.window form').each(function() {
             initForm($(this));
         });
